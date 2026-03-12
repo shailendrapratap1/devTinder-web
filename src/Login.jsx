@@ -10,6 +10,8 @@ try{
 
     const  res = await axios.post("http://localhost:7777/login",{
         emailId,password,
+    },{
+      withCredentials:true
     });
     console.log(res)
 }
