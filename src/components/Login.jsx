@@ -1,22 +1,31 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { addUser } from '../utils/UserSlice';
+import { useDispatch } from 'react-redux';
+import {  useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../utils/constants';
 
 const Login = () => {
 const [emailId,setEmailId] = useState("");
 const [password,setPassword] = useState("");
+const[error,setError] = useState("")
+const dispatch = useDispatch()
+const navigate = useNavigate()
 const handleLogin = async () =>{
 try{
 
 
-    const  res = await axios.post("http://localhost:7777/login",{
+    const  res = await axios.post(BASE_URL + "/login",{
         emailId,password,
     },{
       withCredentials:true
-    });
-    console.log(res)
+    });;
+
+    dispatch(addUser(res.data))
+        return navigate("/")
 }
 catch(err){
-    console.error(err);
+  setError(err?.response?.data || "something went wrong")
 }
 }
 
@@ -36,6 +45,7 @@ catch(err){
   <input type="password" className="input" value={password} placeholder="Password" 
   onChange={(e)=> setPassword(e.target.value)} />
 </div>
+<p className='text-red-500'>{error}</p>
     <div className="card-actions justify-center">
       <button className="btn btn-primary" onClick={handleLogin}> Login</button>
     </div>
