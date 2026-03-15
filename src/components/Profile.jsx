@@ -1,11 +1,13 @@
+import React from 'react'
 
-const Profile = () => {
+const profile = () => {
   return (
     <div>
-      this is m profile
+      
     </div>
   )
 }
 
-export default Profile
+export default profile
+
 
