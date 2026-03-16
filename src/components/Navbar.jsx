@@ -52,8 +52,24 @@ console.log(err)
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><a>Settings</a></li>
-        <li><a onClick={handleLogout}>Logout</a></li>
+  <li>
+                  <Link to="/connections" className="justify-between hover:bg-gray-800 rounded-md p-2">
+                    Connections <span className="badge badge-error">💗</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/requests" className="justify-between hover:bg-gray-800 rounded-md p-2">
+                    Requests <span className="badge badge-warning">👁️</span>
+                  </Link>
+                </li>
+                  <li>
+                  <button
+                    onClick={handleLogout}
+                    className="text-red-400 hover:text-red-300 hover:bg-gray-800 w-full p-2 rounded-md"
+                  >
+                    Logout
+                  </button>
+                </li>
       </ul>
     </div>
   </div>
