@@ -1,26 +1,47 @@
 
 const UserCard = ({user}) => {
-    const{firstName,lastName,photoUrl,age,gender,about} = user;
+    const{firstName,lastName,photoUrl,age,gender,skills,about} = user;
     console.log(user)
   return (
- <div className="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
-      src={user.photoUrl}
-      alt="photo" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">{firstName + "" + lastName }</h2>
-    {age && gender && <p>{age + ", "<+ gender }</p>}
-    <p>{about}</p>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">ignore</button>
-            <button className="btn btn-primary">interested</button>
-
+    <div className="card grid-rows-1 bg-base-300 w-96 shadow-xl p-3">
+      <figure>
+        <img src={photoUrl} alt="Shoes" />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title">{firstName + " " + lastName}</h2>
+        {age && gender && <p>{age + ", " + gender}</p>}
+        <p>{about}</p>
+        {skills && skills.length > 0 && (
+          <div>
+            <h3 className="font-semibold">Skills:</h3>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-200 text-blue-700 px-2 py-1 rounded-lg text-sm"
+                >
+                  {skill.trim()}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="card-actions justify-center my-4">
+          <button
+            className="btn btn-accent"
+           
+          >
+            Ignore
+          </button>
+          <button
+            className="btn btn-secondary"
+           
+          >
+            Intrested
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   )
 }
 
